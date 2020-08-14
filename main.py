@@ -54,14 +54,15 @@ def main():
                 score+=1
                 fruit,fruit_x,fruit_y=ajouter_fruit()
 
-            #verif 
+            #verif bordures
             if s.getHead().left < 0 or s.getHead().right > constants.WINDOW_W-5 or s.getHead().top < 0-5 or s.getHead().bottom > constants.WINDOW_H+5 :
                 touchee = True
             
-
+            if s.mordu():
+                touchee = True
 
             s.avancer(v)
-
+            
             actualiser(screen,s,fruit)
         
     pygame.quit()

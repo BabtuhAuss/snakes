@@ -61,4 +61,13 @@ class Snake():
             courant = courant.suivant
             if not courant:
                 suivant = False
-            
+        
+    def mordu(self):
+        position_corps = []
+        courant = self.tete
+        courant = courant.suivant
+        while courant:
+            position_corps.append([courant.membre.left, courant.membre.top])
+            courant = courant.suivant
+        
+        return [self.tete.membre.left,self.tete.membre.top] in position_corps
