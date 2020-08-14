@@ -1,0 +1,13 @@
+from pygame.locals import *
+
+WINDOW_H = 600
+WINDOW_W = 900
+DIM_SNAKE = 60
+
+WHITE =(255, 255, 255)
+BLUE =(0, 0, 255)
+
+FRUIT = (0,255,0)
+
+
+DIR_HEAD = {K_LEFT: (-DIM_SNAKE, 0), K_RIGHT: (DIM_SNAKE, 0), K_UP: (0, -DIM_SNAKE), K_DOWN: (0, DIM_SNAKE)}
