@@ -19,41 +19,46 @@ class Snake():
 
     def __init__(self):
         self.tete = Corps(0,0)
-        self.dernier_x, self.dernier_y = self.tete.getCoordinates()
+        self.dernier_x, self.dernier_y = 0,0
 
     def getHead(self):
         return self.tete.membre
 
-    def ajouterMembre(self,x,y):
-        nouvelleTete= Corps(x,y)
-        nouvelleTete.suivant=self.tete
-        self.tete.pred=nouvelleTete
-        self.tete=nouvelleTete
+    def ajouterMembre(self):
 
+
+        courant = self.tete
+        while courant.suivant:
+            courant = courant.suivant
+        queue = Corps(self.dernier_x, self.dernier_y)
+
+        courant.suivant=queue
+        queue.pred = courant
         self.afficherCoordonnees()
         
 
     def avancer(self,v):
+        courant = self.tete
+        while courant.suivant:
+            courant = courant.suivant
 
-        x = self.tete
-        copie_x, copie_y =x.getCoordinates()
-        x.membre.move_ip(v)
-        compteur=0
-        while x.suivant:
-            x = x.suivant
-            compteur+=1
-            x.setMembre(copie_x,copie_y)
-            copie_x, copie_y = x.getCoordinates()
-
+        while courant.pred:
+            courant.setMembre(courant.pred.membre.left,courant.pred.membre.top)
+            courant = courant.pred
+        courant.membre.move_ip(v)
 
 
 
     def afficherCoordonnees(self):
         courant = self.tete
         compteur = 0
+        suivant=True
         copie_x, copie_y = courant.getCoordinates()
-        while courant.suivant != None:
-            print(compteur, " | x:", copie_x, " y:", copie_y)
-            courant = courant.suivant
+        while suivant:
+            print(compteur, " | x:", copie_x, " y:", copie_y)        
+            copie_x, copie_y = courant.getCoordinates()
             compteur+=1
+            courant = courant.suivant
+            if not courant:
+                suivant = False
             

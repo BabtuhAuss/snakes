@@ -45,37 +45,24 @@ def main():
                 if event.key in constants.DIR_HEAD:
                     v = constants.DIR_HEAD[event.key]
                     launch=True
-                    s.avancer(v)
-                    x_tete, y_tete = s.tete.getCoordinates()
-                    if(x_tete==fruit_x and y_tete==fruit_y):
-                        s.ajouterMembre(fruit_x,fruit_y)
-                        score+=1
-                        fruit,fruit_x,fruit_y=ajouter_fruit()
-                        continue
-
-                    if s.getHead().left < 0 or s.getHead().right > constants.WINDOW_W-5 or s.getHead().top < 0-5 or s.getHead().bottom > constants.WINDOW_H+5 :
-                        touchee = True
-
-
-                    actualiser(screen,s,fruit)
                     
+                                
+        if launch:
+            x_tete, y_tete = s.tete.getCoordinates()
+            if(x_tete==fruit_x and y_tete==fruit_y):
+                s.ajouterMembre()
+                score+=1
+                fruit,fruit_x,fruit_y=ajouter_fruit()
 
+            #verif 
+            if s.getHead().left < 0 or s.getHead().right > constants.WINDOW_W-5 or s.getHead().top < 0-5 or s.getHead().bottom > constants.WINDOW_H+5 :
+                touchee = True
             
-        # if launch:
-        #     x_tete, y_tete = s.tete.getCoordinates()
-        #     if(x_tete==fruit_x and y_tete==fruit_y):
-        #         s.ajouterMembre(fruit_x,fruit_y)
-        #         score+=1
-        #         print(score)
-        #         fruit,fruit_x,fruit_y=ajouter_fruit()
-        #         continue
 
-        #     if s.getHead().left < 0 or s.getHead().right > constants.WINDOW_W-5 or s.getHead().top < 0-5 or s.getHead().bottom > constants.WINDOW_H+5 :
-        #         touchee = True
 
-        #     s.avancer(v)
+            s.avancer(v)
 
-        #     actualiser(screen,s,fruit)
+            actualiser(screen,s,fruit)
         
     pygame.quit()
     print(score)

@@ -2,7 +2,7 @@ from pygame.locals import *
 
 WINDOW_H = 600
 WINDOW_W = 900
-DIM_SNAKE = 60
+DIM_SNAKE = 30
 
 WHITE =(255, 255, 255)
 BLUE =(0, 0, 255)
